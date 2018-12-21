@@ -42,39 +42,37 @@
 					<div class="col-md-6">
 						<div class="contact-wrap">
 							<h3>Get In Touch</h3>
-							<form action="#" class="contact-form">
+							@if(Session::has('Success'))
+								<div class="alert alert-success">{{Session::get('Success')}}</div>
+							@endif
+							<form action="{{route('sendmail')}}" class="contact-form" method="POST">
+								<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group">
-											<label for="fname">First Name</label>
-											<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="lname">Last Name</label>
-											<input type="text" id="lname" class="form-control" placeholder="Your lastname">
+											<label for="fname">Your Full Name</label>
+											<input type="text" id="name" name="name" class="form-control" placeholder="Your firstname">
 										</div>
 									</div>
 									<div class="w-100"></div>
 									<div class="col-sm-12">
 										<div class="form-group">
 											<label for="email">Email</label>
-											<input type="text" id="email" class="form-control" placeholder="Your email address">
+											<input type="text" id="email" name="email" class="form-control" placeholder="Your email address">
 										</div>
 									</div>
 									<div class="w-100"></div>
 									<div class="col-sm-12">
 										<div class="form-group">
 											<label for="subject">Subject</label>
-											<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+											<input type="text" id="subject" name="subject" class="form-control" placeholder="Your subject of this message">
 										</div>
 									</div>
 									<div class="w-100"></div>
 									<div class="col-sm-12">
 										<div class="form-group">
 											<label for="message">Message</label>
-											<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+											<textarea name="message" id="message" name="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
 										</div>
 									</div>
 									<div class="w-100"></div>

@@ -34,7 +34,7 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ url('footwear/css/style.css') }}">
-	
+	<link rel="stylesheet" type="text/css" href="{{url('admin/ckeditor/contents.css')}}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	</head>
 
@@ -47,13 +47,23 @@
 			<div class="top-menu">
 				<div class="container">
 					<div class="row">
+						<div class="col-sm-12  text-right" id="log">
+							@if(Auth::check())
+							<a href="{{route('infouser')}}" class="">Hello {{Auth::user()->name}}!</a>
+							<button class="btn" type="submit"><a href="{{route('logout')}}"><i class="icon-unlock"></i></a></button>
+							@else
+							<a href="{{route('login')}}" class="btn btn-primary" >Login</a>
+							<a href="{{route('register')}}" class="btn btn-primary" >Register</a>
+							@endif
+						</div>
 						<div class="col-sm-7 col-md-9">
 							<div id="colorlib-logo"><a href="{{ url('home') }}">Footwear</a></div>
 						</div>
 						<div class="col-sm-5 col-md-3">
-			            <form action="#" class="search-wrap">
+			            <form class="search-wrap" method="POST" action="{{route('search')}}">
+			            	<input type="hidden" name="_token" value="{{csrf_token()}}">
 			               <div class="form-group">
-			                  <input type="search" class="form-control search" placeholder="Search">
+			                  <input type="search" class="form-control search" name="key" placeholder="Search">
 			                  <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
 			               </div>
 			            </form>
@@ -205,5 +215,8 @@
 	<!-- scrtip -->
 	<script src="{{ url('footwear/js/myscrip.js') }}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="{{url('admin/ckeditor/ckeditor.js')}}" type="text/javascript" language="javascript"></script>
+	<script src="{{url('admin/ckeditor/adapters/jquery.js')}}" type="text/javascript" language="javascript"></script>
+
 	</body>
 </html>

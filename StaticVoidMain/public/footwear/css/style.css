@@ -7357,7 +7357,7 @@ h1, h2, h3, h4, h5,
     margin: 0; } }
 
 .colorlib-nav .top-menu {
-  padding: 50px 0 10px 0; }
+  padding: 20px 0 10px 0; }
   @media (max-width: 767.98px) {
     .colorlib-nav .top-menu {
       padding: 28px 0; } }
@@ -8580,7 +8580,7 @@ input[type="text"] {
   height: 25px;
   cursor: pointer;
   text-decoration: none;
-  top: 2.7em !important; }
+  top: 6.7em !important; }
   .colorlib-nav-toggle.active i::before, .colorlib-nav-toggle.active i::after {
     background: #fff; }
   .colorlib-nav-toggle:hover, .colorlib-nav-toggle:focus, .colorlib-nav-toggle:active {
@@ -8844,3 +8844,9 @@ input[type="text"] {
 
 .js .animate-box {
   opacity: 0; }
+
+
+#img-info {
+    max-width: 20% !important;
+    height: auto;
+}

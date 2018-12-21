@@ -33,47 +33,40 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-7">
+					<div class="col-lg-7 cart-detail">
 						<!-- <form method="POST" class="colorlib-form" action="{{route('postcheckout')}}"> -->
+							@if(Auth::check())
 							<input type="hidden" name="_token" value="{{csrf_token()}}">
 							<h2>Billing Details</h2>
-		              	
-								<div class="col-md-12">
-									<div class="form-group">
-										<div class="radio">
-										  <label><input type="radio" name="optradio"> Create an Account? </label>
-										  <label><input type="radio" name="optradio"> Ship to different address</label>
+		              					@if(count($errors)>0)
+										<div class="alert alert-danger">
+											@foreach($errors->all() as $err)
+											{{$err}}
+											@endforeach
 										</div>
-									</div>
-								</div>
-
-								
-
+										@endif
 								<div class="col-md-12">
 									<div class="form-group">
-											<label for="companyname">Name</label>
-				                    		<input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name">
+											<label for="">Name</label>
+				                    		<input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name" value="{{Auth::user()->name}}">
 				                  	</div>
 				               	</div>
-
 				               	<div class="col-md-12">
 										<div class="form-group">
-											<label for="fname">Address</label>
-				                    	<input type="text" name="address" id="address" class="form-control" placeholder="Enter Your Address">
+											<label for="">Address</label>
+				                    	<input type="text" name="address" id="address" class="form-control" placeholder="Enter Your Address" value="{{Auth::user()->address}}">
 				                  </div>
-				               	</div>
-			            
-														
-								<div class="col-md-6">
+				               	</div>				
+								<div class="col-md-12">
 									<div class="form-group">
-										<label for="email">E-mail Address</label>
-										<input type="text" name="email" id="email" class="form-control" placeholder="Enter Your Email">
+										<label for="">E-mail Address</label>
+										<input type="text" name="email" id="email" class="form-control" placeholder="Enter Your Email" value="{{Auth::user()->email}}">
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<div class="form-group">
-										<label for="Phone">Phone Number</label>
-										<input type="number" name="phone" id="phone" class="form-control" placeholder="Enter Your Phone">
+										<label for="">Phone Number</label>
+										<input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Your Phone" value="{{Auth::user()->phone}}">
 									</div>
 								</div>
 							<div class="row">
@@ -81,6 +74,46 @@
 								<button onclick="order()" type="submit" class="btn btn-primary center">Order</button>
 							</div>
 							</div>
+							@else
+							<input type="hidden" name="_token" value="{{csrf_token()}}">
+							<h2>Billing Details</h2>
+		              					@if(count($errors)>0)
+										<div class="alert alert-danger">
+											@foreach($errors->all() as $err)
+											{{$err}}
+											@endforeach
+										</div>
+										@endif
+								<div class="col-md-12">
+									<div class="form-group">
+											<label for="">Name</label>
+				                    		<input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name" value="">
+				                  	</div>
+				               	</div>
+				               	<div class="col-md-12">
+										<div class="form-group">
+											<label for="">Address</label>
+				                    	<input type="text" name="address" id="address" class="form-control" placeholder="Enter Your Address">
+				                  </div>
+				               	</div>				
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="">E-mail Address</label>
+										<input type="text" name="email" id="email" class="form-control" placeholder="Enter Your Email">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="">Phone Number</label>
+										<input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Your Phone">
+									</div>
+								</div>
+							<div class="row">
+							<div class="col-md-12 text-center ">
+								<button onclick="order()" type="submit" class="btn btn-primary center">Order</button>
+							</div>
+							</div>
+							@endif
 						<!-- </form> -->				               
 		            
 					</div>

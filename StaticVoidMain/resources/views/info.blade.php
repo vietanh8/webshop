@@ -32,40 +32,43 @@
 							</div>
 						</div>
 					</div>
-						
+				
 					
 					<div class="col-sm-4">
 						<div class="product-desc">
+							<form action="{{route('infocart',$product_buy->id)}}" method="POST">
+								<input type="hidden" name="_token" value="{{csrf_token()}}">
+
 							<h3>{{$product_buy->name}}</h3>
-							<p class="price">
-								<span>${{$product_buy->unit}}</span> 
-							</p>
-							
+							<p><span >${{$product_buy->unit}}</span></p>							
 							<!-- <p>{{$product_buy->description}}</p> -->
 							<div class="size-wrap">
 								<div class="block-26 mb-2">
 									<h4>Size</h4>
-				               	<input type="number" id="size" name="quantity" class="form-control input-number text-center" value="{{$product_buy->size}}" min="7" max="9">
+				               	<input type="number" name="size" class="form-control input-number text-center" value="{{$product_buy->size}}" min="7" max="9">
 				            </div>
 				            <div class="block-26 mb-4">
-									<h4>Width</h4>
+									<h4>Quantity</h4>
 				            </div>
 							</div>
-                     <div class="input-group mb-4">
-                     	
-                     	<input type="number" id="qty" name="quantity" value="{{$product_buy->quantity}}" class="form-control input-number text-center" value="" min="1" max="20">
-                     	
-                  	</div>
-                  	<div class="row">
+		                     <div class="input-group mb-4">
+		                     	
+		                     	<input type="number" name="quantity" value="1" class="form-control input-number text-center" value="" min="1" max="20">
+		                     	
+		                  	</div>
+                  		<div class="row">
 	                  	<div class="col-sm-12 text-center">
-									<a href="{{route('cart',$product_buy->id)}}" ><i class="icon-shopping-cart btn btn-primary" >            ADD TO CART</i></a>
+	                  				<button type="submit" class="btn btn-primary">ADD TO CART</button>
+									<!-- <a href="#" ><i class="icon-shopping-cart btn btn-primary" >ADD TO CART</i></a> -->
+									<!-- {{route('cart',$product_buy->id)}} -->
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 					</div>
 					
-			</form>
+			
 
 				<div class="row">
 					<div class="col-sm-12">
@@ -83,29 +86,21 @@
 								  </ul>
 
 								  <div class="tab-content" id="pills-tabContent">
-								    <div class="tab-pane border fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-								      {{$product_buy->description}}
-								    </div>
+								    <div class="tab-pane border fade show active" id="pills-description" name="edit" role="tabpanel" aria-labelledby="pills-description-tab">
+									{!!$product_buy->description!!}
 									</div>
-								</div>
 								</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			<script type="text/javascript">
-				function addtocart(){
-					var id = $("#id").val();
-					var size = $("#size").val();
-					var quantity = $("#qty").val();
+			
 
-					
-					
-				}
-			</script>
-
-
+				<script>
+				     
+				  CKEDITOR.replace("edit");
+				 </script>
 
 
 	 

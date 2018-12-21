@@ -38,12 +38,33 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
+				<div class="row justify-content-center">
+					<div class="col-md-6">
 						<div class="contact-wrap">
-							<h3 class="text-center">Register</h3>
-							<form action="#" class="contact-form">
+							@if(Auth::check())
+							<div class="text-center">
+								<span>Hello {{Auth::user()->name}}! Welcome to Footwear 
+									<p>
+										<a href="{{ url('shoes') }}" class="btn btn-primary">SHOP NOW</a>
+									</p>
+								</span>
+							</div>
+							@else
+							<h3 class="text-center">Login</h3>
+							<form action="{{route('postlogin')}}" class="contact-form" method="POST">
+								<input type="hidden" name="_token" value="{{csrf_token()}}">
+								@if(count($errors)>0)
+								<div class="alert alert-danger">
+									@foreach($errors->all() as $err)
+									{{$err}}
+									@endforeach
+								</div>
+								@endif
+								@if(Session::has('Error'))
+									<div class="alert alert-danger">{{Session::get('Error')}}</div>
+								@endif
 								<div class="row">
+									
 									<div class="w-100"></div>
 									<div class="col-sm-12">
 										<div class="form-group">
@@ -55,7 +76,7 @@
 									<div class="col-sm-12">
 										<div class="form-group">
 											<label for="subject">Password</label>
-											<input type="password" namme="password" class="form-control" placeholder="Your password">
+											<input type="password" name="password" class="form-control" placeholder="Your password">
 										</div>
 									</div>
 
@@ -63,11 +84,13 @@
 									<div class="w-100"></div>
 									<div class="col-sm-12 text-center">
 										<div class="form-group">
-											<button type="submit" value="Register" class="btn btn-primary">Loign</button>
+											<button type="submit" class="btn btn-primary">Login</button>
 										</div>
+										<span><a href="{{route('register')}}" title="">Create an account </a></span>
 									</div>
 								</div>
-							</form>		
+							</form>
+							@endif		
 						</div>
 					</div>
 					
